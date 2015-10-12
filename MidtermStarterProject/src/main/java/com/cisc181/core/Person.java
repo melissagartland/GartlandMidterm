@@ -104,15 +104,16 @@ public abstract class Person {
 		System.out.println(this.DOB);
 	}
 
-	public int PrintAge() {
+	public int PrintAge() throws PersonException {
 		Calendar today = Calendar.getInstance();
 		Calendar birthDate = Calendar.getInstance();
 
 		int age = 0;
 		birthDate.setTime(this.DOB);
 		if (birthDate.after(today)) {
-			throw new IllegalArgumentException("Can't be born in the future");
+			throw new PersonException("Can't be born in the future");
 		}
+		
 		age = today.get(Calendar.YEAR) - birthDate.get(Calendar.YEAR);
 
 		// If birth date is greater than todays date (after 2 days adjustment of
@@ -134,5 +135,12 @@ public abstract class Person {
 
 		return age;
 
+	}
+	public String printPhoneNumber() throws PersonException {
+		//format phone number
+		
+		System.out.println("phone number is" + phone_number);
+		
+		return phone_number;
 	}
 }
